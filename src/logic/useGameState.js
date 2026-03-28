@@ -18,16 +18,20 @@ export const useGameState = () => {
   }, [hero, tasks]);
 
   const completeTask = (task) => {
-    const xpGain = task.difficulty * 20;
-    const goldGain = task.difficulty * 10;
-    setHero(prev => ({
-      ...prev,
-      xp: prev.xp + xpGain,
-      gold: prev.gold + goldGain,
-      lvl: Math.floor((prev.xp + xpGain) / 200) + 1
-    }));
-    setTasks(prev => prev.filter(t => t.id !== task.id));
-  };
+  let xpMultiplier = 1;
+  
+  // Например, задачи на Интеллект дают больше опыта
+  if (task.type === "Интеллект") xpMultiplier = 1.5;
+  
+  setHero(prev => ({
+    ...prev,
+    xp: prev.xp + (task.difficulty * 20 * xpMultiplier),
+    gold: prev.gold + (task.difficulty * 10),
+    lvl: Math.floor((prev.xp + 20) / 200) + 1
+  }));
+  
+  setTasks(prev => prev.filter(t => t.id !== task.id));
+};
 
   const failTask = (id) => {
     setHero(prev => ({ ...prev, hp: Math.max(0, prev.hp - 20) }));

@@ -7,15 +7,22 @@ import './index.css';
 function App() {
   // Вытаскиваем ВСЁ необходимое из нашего хука
   const { hero, tasks, setTasks, completeTask, failTask } = useGameState();
-  const [text, setText] = useState("");
+  const [type, setType] = useState("Интеллект");
 
   const addTask = (e) => {
-    e.preventDefault();
-    if (!text) return;
-    // Теперь setTasks будет работать, так как мы его импортировали выше
-    setTasks([...tasks, { id: Date.now(), text, difficulty: 1, type: "Дело" }]);
-    setText("");
+  e.preventDefault();
+  if (!text) return;
+  
+  const newTask = { 
+    id: Date.now(), 
+    text, 
+    difficulty: 1, 
+    type: type // Используем выбранный тип
   };
+  
+  setTasks([...tasks, newTask]);
+  setText("");
+};
 
   return (
     <div className="container">
@@ -25,8 +32,14 @@ function App() {
         <input 
           value={text} 
           onChange={(e) => setText(e.target.value)} 
-          placeholder="Новый квест..." 
-        />
+          placeholder="Что нужно сделать?" 
+       />
+        <select value={type} onChange={(e) => setType(e.target.value)} className="type-select">
+          <option value="Интеллект">🧠 Интеллект</option>
+          <option value="Сила">💪 Сила</option>
+          <option value="Ловкость">⚡️ Ловкость</option>
+          <option value="Дело">🧹 Дело</option>
+        </select>
         <button type="submit">Добавить</button>
       </form>
 
