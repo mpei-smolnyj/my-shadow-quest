@@ -5,7 +5,7 @@ export default function StatsBar({ hero, heroAvatar }) {
   return (
     <div className="card stats-header-rpg">
       
-      {/* ЛЕВАЯ ЧАСТЬ: Аватар и уровень под ним */}
+      {/* ЛЕВАЯ ЧАСТЬ */}
       <div className="avatar-side">
         <div className="avatar-container">
           <img 
@@ -13,14 +13,13 @@ export default function StatsBar({ hero, heroAvatar }) {
             alt="Hero Avatar" 
             className="hero-avatar" 
           />
-          
         </div>
-          <div className="level-badge-new">LVL {hero.lvl}
+        <div className="rpg-level-badge">
+          LVL {hero.lvl}
         </div>
-
       </div>
       
-      {/* ПРАВАЯ ЧАСТЬ: Полоски прогресса */}
+      {/* ПРАВАЯ ЧАСТЬ */}
       <div className="stats-bars-container">
         <ProgressBar label="❤️ HP" value={hero.hp} max={100} color="#ff4444" />
         <ProgressBar label="✨ XP" value={hero.xp % 200} max={200} color="#00ff00" />
