@@ -1,15 +1,21 @@
 import ProgressBar from './ProgressBar';
 
-export default function StatsBar({ hero }) {
+export default function StatsBar({ hero, heroAvatar }) {
   return (
-    <div className="card stats-header" style={{ padding: '15px', background: '#1a1a1a', borderRadius: '12px' }}>
-      <div style={{ display: 'flex', gap: '10px' }}>
+    <div className="card stats-header-rpg">
+      <div className="avatar-container">
+        <img 
+          src={heroAvatar} 
+          alt="Hero Avatar" 
+          className="hero-avatar"
+        />
+        <div className="level-badge">LVL {hero.lvl}</div>
+      </div>
+      
+      <div className="stats-bars-container">
         <ProgressBar label="❤️ HP" value={hero.hp} max={100} color="#ff4444" />
         <ProgressBar label="✨ XP" value={hero.xp % 200} max={200} color="#00ff00" />
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '10px', color: '#ffd700' }}>
-        <span>💰 {hero.gold} Gold</span>
-        <span>📊 Level {hero.lvl}</span>
+        <div className="gold-stat">💰 {hero.gold} Gold</div>
       </div>
     </div>
   );

@@ -1,29 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useGameState } from './logic/useGameState';
 import StatsBar from './components/StatsBar';
 import TaskItem from './components/TaskItem';
 import './index.css';
 
 function App() {
-  // Вытаскиваем ВСЁ необходимое из нашего хука
+  // Вытаскиваем все функции из нашей логики
   const { hero, tasks, setTasks, completeTask, failTask } = useGameState();
+  
+  // Состояния для формы
   const [text, setText] = useState("");
   const [type, setType] = useState("Интеллект");
 
+  // Безопасная инициализация Telegram WebApp
+  useEffect(() => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+  }, []);
+
   const addTask = (e) => {
-  e.preventDefault();
-  if (!text) return;
-  
-  const newTask = { 
-    id: Date.now(), 
-    text, 
-    difficulty: 1, 
-    type: type // Используем выбранный тип
+    e.preventDefault();
+    if (!text.trim()) return;
+
+    const newTask = { 
+      id: Date.now(), 
+      text, 
+      difficulty: 1, 
+      type: type 
+    };
+
+    setTasks([...tasks, newTask]);
+    setText("");
   };
-  
-  setTasks([...tasks, newTask]);
-  setText("");
-};
 
   return (
     <div className="container">
@@ -34,11 +44,15 @@ function App() {
           value={text} 
           onChange={(e) => setText(e.target.value)} 
           placeholder="Что нужно сделать?" 
-       />
-        <select value={type} onChange={(e) => setType(e.target.value)} className="type-select">
+        />
+        <select 
+          value={type} 
+          onChange={(e) => setType(e.target.value)} 
+          className="type-select"
+        >
           <option value="Интеллект">🧠 Интеллект</option>
           <option value="Сила">💪 Сила</option>
-          <option value="Ловкость">⚡️ Ловкость</option>
+          <option value="Ловкость">⚡ Ловкость</option>
           <option value="Дело">🧹 Дело</option>
         </select>
         <button type="submit">Добавить</button>

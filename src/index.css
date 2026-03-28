@@ -94,3 +94,57 @@ button {
 @media (min-width: 480px) {
   .add-form { flex-direction: row; }
 }
+
+.stats-header-rpg {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 15px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.avatar-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.hero-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Делаем круглой */
+  border: 2px solid #00ff00; /* Зеленая обводка */
+  object-fit: cover; /* Чтобы картинка не растягивалась */
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Легкое свечение */
+}
+
+.level-badge {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: #ffd700;
+  color: #000;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+
+.stats-bars-container {
+  flex: 1; /* Занимает все оставшееся место */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gold-stat {
+  font-size: 14px;
+  color: #ffd700;
+  text-align: right;
+  margin-top: 5px;
+}
+
