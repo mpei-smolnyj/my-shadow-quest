@@ -6,7 +6,7 @@ import './index.css';
 
 function App() {
   // Вытаскиваем ВСЁ необходимое из нашего хука
-  const { hero, tasks, setTasks, completeTask, failTask, buyItem } = useGameState();
+  const { hero, tasks, setTasks, completeTask, failTask } = useGameState();
   const [text, setText] = useState("");
 
   const addTask = (e) => {
