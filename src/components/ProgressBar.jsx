@@ -1,5 +1,6 @@
- export default function ProgressBar({ label, value, max, color }) {
-  const percentage = (value / max) * 100;
+export default function ProgressBar({ label, value, max, color }) {
+  const percentage = Math.min(100, (value / max) * 100);
+  
   return (
     <div style={styles.container}>
       <div style={styles.labelRow}>
@@ -9,9 +10,9 @@
       <div style={styles.track}>
         <div style={{
           ...styles.fill,
-          width: ${percentage}%,
+          width: `${percentage}%`,
           backgroundColor: color,
-          boxShadow: 0 0 10px ${color} // Эффект свечения
+          boxShadow: `0 0 10px ${color}`
         }} />
       </div>
     </div>
@@ -20,7 +21,21 @@
 
 const styles = {
   container: { marginBottom: '10px', flex: 1, padding: '0 5px' },
-  labelRow: { display: 'flex', justifyContent: 'space-between', fontSize: '12px', marginBottom: '4px' },
-  track: { height: '8px', background: '#333', borderRadius: '4px', overflow: 'hidden' },
-  fill: { height: '100%', transition: 'width 0.3s ease-in-out' }
+  labelRow: { 
+    display: 'flex', 
+    justifyContent: 'space-between', 
+    fontSize: '12px', 
+    marginBottom: '4px',
+    color: '#ccc'
+  },
+  track: { 
+    height: '8px', 
+    background: '#333', 
+    borderRadius: '4px', 
+    overflow: 'hidden' 
+  },
+  fill: { 
+    height: '100%', 
+    transition: 'width 0.3s ease-in-out' 
+  }
 };
