@@ -110,7 +110,11 @@ button {
   width: 60px;
   height: 60px;
   flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
 }
+
 
 .hero-avatar {
   width: 100%;

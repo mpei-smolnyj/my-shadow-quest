@@ -5,14 +5,11 @@ import TaskItem from './components/TaskItem';
 import './index.css';
 
 function App() {
-  // Вытаскиваем все функции из нашей логики
   const { hero, tasks, setTasks, completeTask, failTask } = useGameState();
-  
-  // Состояния для формы
   const [text, setText] = useState("");
   const [type, setType] = useState("Интеллект");
+  const heroAvatar = '/hero.png'; 
 
-  // Безопасная инициализация Telegram WebApp
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
@@ -37,7 +34,8 @@ function App() {
 
   return (
     <div className="container">
-      <StatsBar hero={hero} />
+      {/* ВОТ ЗДЕСЬ ОБНОВИ ВЫЗОВ: ПЕРЕДАЙ heroAvatar */}
+      <StatsBar hero={hero} heroAvatar={heroAvatar} />
       
       <form onSubmit={addTask} className="add-form">
         <input 
