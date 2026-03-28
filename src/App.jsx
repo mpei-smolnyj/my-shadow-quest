@@ -8,7 +8,7 @@ function App() {
   const { hero, tasks, setTasks, completeTask, failTask } = useGameState();
   const [text, setText] = useState("");
   const [type, setType] = useState("Интеллект");
-  const heroAvatar = '/hero.png'; 
+  const heroAvatar = "/hero.png"; 
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {

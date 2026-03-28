@@ -106,23 +106,20 @@ button {
 }
 
 .avatar-container {
-  position: relative;
   width: 60px;
   height: 60px;
-  flex-shrink: 0;
-  aspect-ratio: 1 / 1;
   border-radius: 50%;
+  border: 2px solid #00ff00;
   overflow: hidden;
+  position: relative;
+  background: #222;
 }
 
-
 .hero-avatar {
+  display: block;
   width: 100%;
   height: 100%;
-  border-radius: 50%; /* Делаем круглой */
-  border: 2px solid #00ff00; /* Зеленая обводка */
-  object-fit: cover; /* Чтобы картинка не растягивалась */
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Легкое свечение */
+  object-fit: cover;
 }
 
 .level-badge {

@@ -1,14 +1,16 @@
-// src/components/StatsBar.jsx
 import ProgressBar from './ProgressBar';
 
 export default function StatsBar({ hero, heroAvatar }) {
   return (
     <div className="card stats-header-rpg">
-      <div className="avatar-side">
-        <div className="avatar-container">
-          <img src={heroAvatar} alt="Hero Avatar" className="hero-avatar" />
-          <div className="level-badge">LVL {hero.lvl}</div>
-        </div>
+      <div className="avatar-container">
+        <img 
+          src={heroAvatar} 
+          className="hero-avatar" 
+          alt="hero"
+          onError={(e) => console.log("Ошибка загрузки картинки:", heroAvatar)} 
+        />
+        <div className="level-badge">LVL {hero.lvl}</div>
       </div>
       
       <div className="stats-bars-container">
