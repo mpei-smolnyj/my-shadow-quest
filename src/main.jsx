@@ -9,4 +9,7 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-window.Telegram.WebApp.expand(); // Развернуть на весь экран
+if (window.Telegram && window.Telegram.WebApp) {
+  window.Telegram.WebApp.expand();
+  window.Telegram.WebApp.ready();
+}
