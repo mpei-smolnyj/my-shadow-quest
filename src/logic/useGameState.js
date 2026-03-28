@@ -34,5 +34,17 @@ export const useGameState = () => {
     setTasks(prev => prev.filter(t => t.id !== id));
   };
 
+    const buyItem = (price, hpRestore) => {
+  if (hero.gold >= price) {
+    setHero(prev => ({ 
+      ...prev, 
+      gold: prev.gold - price, 
+      hp: Math.min(100, prev.hp + hpRestore) 
+    }));
+    return true;
+  }
+  return false;
+};
+
   return { hero, tasks, setTasks, completeTask, failTask, buyItem };
 };
