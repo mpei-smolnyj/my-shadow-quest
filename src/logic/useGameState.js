@@ -68,4 +68,4 @@ export const useGameState = () => {
   setTasks(prev => prev.filter(t => t.id !== task.id));
 
   return { hero, tasks, setTasks, completeTask, failTask, buyItem };
-};
+}
