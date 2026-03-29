@@ -16,19 +16,6 @@ export const useGameState = () => {
     localStorage.setItem("hero_stats", JSON.stringify(hero));
     localStorage.setItem("hero_tasks", JSON.stringify(tasks));
   }, [hero, tasks]);
-
-  const completeTask = (task) => {
-  let xpMultiplier = 1;
-  
-  // Например, задачи на Интеллект дают больше опыта
-  if (task.type === "Интеллект") xpMultiplier = 1.5;
-  
-  setHero(prev => ({
-    ...prev,
-    xp: prev.xp + (task.difficulty * 20 * xpMultiplier),
-    gold: prev.gold + (task.difficulty * 10),
-    lvl: Math.floor((prev.xp + 20) / 200) + 1
-  }));
   
   setTasks(prev => prev.filter(t => t.id !== task.id));
 };
@@ -38,7 +25,7 @@ export const useGameState = () => {
     setTasks(prev => prev.filter(t => t.id !== id));
   };
 
-    const buyItem = (price, hpRestore) => {
+  const buyItem = (price, hpRestore) => {
   if (hero.gold >= price) {
     setHero(prev => ({ 
       ...prev, 
@@ -49,6 +36,36 @@ export const useGameState = () => {
   }
   return false;
 };
+
+   const completeTask = (task) => {
+      let xpGain = task.difficulty * 20;
+      let goldGain = task.difficulty * 10;
+      let message = "";
+
+      if (Math.random() < 0.2) {
+        const events = [
+        { text: "💰 Вы нашли заначку в старых джинсах!", gold: 15, xp: 0 },
+        { text: "📖 Прочитанная статья оказалась полезной!", gold: 0, xp: 30 },
+        { text: "🍀 Удача! Двойной опыт за задачу!", gold: 0, xp: xpGain },
+        { text: "💎 Награда от гильдии за усердие!", gold: 25, xp: 10 }
+      ];
+    
+        const randomEvent = events[Math.floor(Math.random() * events.length)];
+        goldGain += randomEvent.gold;
+        xpGain += randomEvent.xp;
+        message = randomEvent.text;
+    
+      if (message) alert(message); 
+      }
+
+    setHero(prev => ({
+      ...prev,
+      xp: prev.xp + xpGain,
+      gold: prev.gold + goldGain,
+      lvl: Math.floor((prev.xp + xpGain) / 200) + 1
+  }));
+
+  setTasks(prev => prev.filter(t => t.id !== task.id));
 
   return { hero, tasks, setTasks, completeTask, failTask, buyItem };
 };
